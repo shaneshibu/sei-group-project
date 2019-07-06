@@ -1,5 +1,7 @@
-const port = 3999
+const port = process.env.PORT || 3999
 
-const dbURI = 'mongodb://localhost/wanderlust'
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/wanderlust'
 
-module.exports = { port, dbURI }
+const secret = process.env.SECRET || 'special sauce to my salt'
+
+module.exports = { port, dbURI, secret }
