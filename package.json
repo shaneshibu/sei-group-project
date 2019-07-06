@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "serve:back": "nodemon",
+    "serve:front": "webpack-dev-server --mode-development",
+    "seed": "node db/seeds.js",
+    "build": "webpack -p",
+    "start": "node index.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
