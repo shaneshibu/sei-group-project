@@ -3,6 +3,7 @@ const express = require('express')
 const { dbURI, port } = require('./config/env')
 const app = express()
 const router = require('./config/router')
+const logger = require('./lib/logger')
 
 mongoose.connect(dbURI, { useNewUrlParser: true })
 
@@ -11,6 +12,8 @@ db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
   console.log('connected!')
 })
+
+app.use(logger)
 
 app.use('/api', router)
 
