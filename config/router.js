@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const users = require('../controllers/auth')
+const trips = require('../controllers/trips')
 
 // resgister route
 router.route('/register')
@@ -19,6 +20,9 @@ router.route('/users/:id')
 //edit user
   .put(users.edit)
   .delete(users.delete)
+
+router.route('/users/:id/trips')
+  .post(trips.create)
 
 router.route('/*')
   .all((req, res) => res.status(404)
