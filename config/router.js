@@ -9,6 +9,14 @@ router.route('/register')
 router.route('/login')
   .post(users.login)
 
+// list of all users
+router.route('/users')
+  .get(users.index)
+
+// single user
+router.route('/users/:id')
+  .get(users.show)
+
 router.route('/*')
   .all((req, res) => res.status(404)
     .json( { message: 'not found at Wanderlust' } ))

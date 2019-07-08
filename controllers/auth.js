@@ -1,17 +1,15 @@
+require('dotenv').config()
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/env')
 
 // Registration
 function register(req, res, next) {
-  console.log('register')
   User
     .create(req.body)
-    .then(user => {
-      console.log(user)
-      res.status(201).json({ message: `Welcome aboard ${user.username}...now your journey begins.` })
-    }
-    )
+    .then(user => res.status(201).json({
+      message: `Welcome aboard ${user.username}...now your journey begins.`
+    }))
     .catch(next)
 }
 
@@ -32,20 +30,19 @@ function login(req, res, next) {
     .catch(next)
 }
 
-// function indexRoute(req, res, next) {
-//   User
-//     .find(req.query)
-//     .populate('user')
-//     .then(users => res.status(200).json(users))
-//     .catch(next)
-// }
+function indexRoute(req, res, next) {
+  User
+    .find()
+    .then(users => res.status(200).json(users))
+    .catch(next)
+}
 
 function showRoute(req, res, next) {
+  console.log(req.params)
   User
     .findById(req.params.id)
-    .populate('user')
-    .populate('comments.user')
     .then(user => {
+      console.log(user)
       if (!user) throw new Error('Not Found')
       return res.status(200).json(user)
     })
@@ -89,5 +86,6 @@ module.exports = {
   login,
   show: showRoute,
   edit: editRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  index: indexRoute
 }
