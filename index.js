@@ -1,5 +1,6 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const express = require('express')
 const { dbURI, port, token } = require('./config/env')
 const app = express()
@@ -14,6 +15,8 @@ db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
   console.log('connected!')
 })
+
+app.use(bodyParser.json())
 
 app.use(logger)
 

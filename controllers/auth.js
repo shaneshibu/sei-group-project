@@ -4,11 +4,14 @@ const { secret } = require('../config/env')
 
 // Registration
 function register(req, res, next) {
+  console.log('register')
   User
     .create(req.body)
-    .then(user => res.status(201).json({
-      message: `Welcome aboard ${user.username}...now your journey begins.`
-    }))
+    .then(user => {
+      console.log(user)
+      res.status(201).json({ message: `Welcome aboard ${user.username}...now your journey begins.` })
+    }
+    )
     .catch(next)
 }
 
