@@ -24,4 +24,4 @@ app.use('/api', router)
 
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`App is totally listening on port ${port} ${token}`))
+app.listen(port, () => console.log(`App is totally listening on port ${port}`))

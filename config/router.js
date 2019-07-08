@@ -25,7 +25,8 @@ router.route('/users/:id/trips')
   .post(trips.create)
 
 router.route('/users/:id/trips/:tripId')
-  .put(trips.addPlace)
+  .patch(trips.edit)
+  .post(trips.addPlace)
   .delete(trips.removePlace)
 
 router.route('/*')

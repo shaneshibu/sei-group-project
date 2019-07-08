@@ -1,6 +1,6 @@
 const Trip = require('../models/trip')
 
-function createTrips(req, res, next) {
+function createTrip(req, res, next) {
   console.log('create trip')
   console.log(req.params)
   const body = {
@@ -10,6 +10,20 @@ function createTrips(req, res, next) {
   Trip
     .create(body)
     .then(trip => res.status(201).json(trip))
+    .catch(next)
+}
+
+function editTrip(req, res, next) {
+  console.log('edit trip')
+  Trip
+    .findById(req.params.tripId)
+    .then(trip => {
+      if (!trip) throw new Error('Not Found')
+      Object.assign(trip, req.body)
+      if (!req.body.title.length) throw new Error('ValidationError')
+      trip.save()
+      res.status(202).json(trip)
+    })
     .catch(next)
 }
 
@@ -44,6 +58,9 @@ function removePlace(req, res, next) {
 }
 
 module.exports = {
-  create: createTrips,
-  addPlace, removePlace
+  create: createTrip,
+  edit: editTrip,
+  addPlace,
+  removePlace
+
 }
