@@ -1,6 +1,7 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
-const { dbURI, port } = require('./config/env')
+const { dbURI, port, token } = require('./config/env')
 const app = express()
 const router = require('./config/router')
 const logger = require('./lib/logger')
@@ -20,4 +21,4 @@ app.use('/api', router)
 
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`App is totally listening on port ${port}`))
+app.listen(port, () => console.log(`App is totally listening on port ${port} ${token}`))

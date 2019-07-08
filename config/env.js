@@ -4,4 +4,6 @@ const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/wanderlust'
 
 const secret = process.env.SECRET || 'special sauce to my salt'
 
-module.exports = { port, dbURI, secret }
+const token = process.env.TRIPOSO_TOKEN
+
+module.exports = { port, dbURI, secret, token }
