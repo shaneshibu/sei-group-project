@@ -24,6 +24,9 @@ router.route('/users/:id')
 router.route('/users/:id/trips')
   .post(trips.create)
 
+router.route('/users/:id/trips/:tripId')
+  .put(trips.addPlace)
+
 router.route('/*')
   .all((req, res) => res.status(404)
     .json( { message: 'not found at Wanderlust' } ))

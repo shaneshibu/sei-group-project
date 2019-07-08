@@ -13,6 +13,22 @@ function createTrips(req, res, next) {
     .catch(next)
 }
 
+function addPlace(req, res, next) {
+  console.log('add place')
+  console.log(req.params)
+  Trip
+    .findById(req.params.tripId)
+    .then(trip => {
+      if (!trip) throw new Error('Not Found')
+      if (!req.body.placeId.length) throw new Error('ValidationError')
+      trip.places.push(req.body.placeId)
+      trip.save()
+      res.status(201).json(trip)
+    })
+    .catch(next)
+}
+
 module.exports = {
-  create: createTrips
+  create: createTrips,
+  addPlace
 }
