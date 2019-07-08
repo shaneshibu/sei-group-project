@@ -74,7 +74,8 @@ function deleteRoute(req, res, next) {
   User
     .findById(req.params.id)
     .then(user => {
-      if (!user.user.equals(req.currentUser._id)) throw new Error('Unauthorized')
+      if (!user) throw new Error('Not Found')
+      //if (!user.user.equals(req.currentUser._id)) throw new Error('Unauthorized')
       return user.remove()
     })
     .then(() => res.sendStatus(204))
