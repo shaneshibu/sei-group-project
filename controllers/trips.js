@@ -27,6 +27,16 @@ function editTrip(req, res, next) {
     .catch(next)
 }
 
+function deleteTrip(req, res, next) {
+  Trip
+    .findByIdAndRemove(req.params.tripId)
+    .then(trip => {
+      if (!trip) throw new Error('Not Found')
+      trip.remove()
+    })
+    .catch(next)
+}
+
 function addPlace(req, res, next) {
   console.log('add place')
   console.log(req.params)
@@ -73,6 +83,6 @@ module.exports = {
   edit: editTrip,
   addPlace,
   removePlace,
-  showTrip
-
+  showTrip,
+  deleteTrip
 }

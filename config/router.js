@@ -25,10 +25,12 @@ router.route('/users/:id/trips')
   .post(trips.create)
 
 router.route('/users/:id/trips/:tripId')
-  .patch(trips.edit)
+  .put(trips.edit)
   .post(trips.addPlace)
-  .delete(trips.removePlace)
   .get(trips.showTrip)
+  .patch(trips.removePlace)
+  .delete(trips.deleteTrip)
+
 
 router.route('/*')
   .all((req, res) => res.status(404)
