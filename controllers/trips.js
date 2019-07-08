@@ -57,10 +57,22 @@ function removePlace(req, res, next) {
     .catch(next)
 }
 
+function showTrip(req, res, next) {
+  console.log('show place')
+  Trip
+    .findById(req.params.tripId)
+    .then(trip => {
+      if (!trip) throw new Error('Not Found')
+      res.status(200).json(trip)
+    })
+    .catch(next)
+}
+
 module.exports = {
   create: createTrip,
   edit: editTrip,
   addPlace,
-  removePlace
+  removePlace,
+  showTrip
 
 }

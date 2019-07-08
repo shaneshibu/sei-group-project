@@ -28,6 +28,7 @@ router.route('/users/:id/trips/:tripId')
   .patch(trips.edit)
   .post(trips.addPlace)
   .delete(trips.removePlace)
+  .get(trips.showTrip)
 
 router.route('/*')
   .all((req, res) => res.status(404)
