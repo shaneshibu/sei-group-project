@@ -28,7 +28,22 @@ function addPlace(req, res, next) {
     .catch(next)
 }
 
+function removePlace(req, res, next) {
+  console.log('remove place')
+  console.log(req.params)
+  Trip
+    .findById(req.params.tripId)
+    .then(trip => {
+      if (!trip) throw new Error('Not Found')
+      if (!req.body.placeId.length) throw new Error('ValidationError')
+      trip.places = trip.places.filter(place => place !== req.body.placeId)
+      trip.save()
+      res.status(202).json(trip)
+    })
+    .catch(next)
+}
+
 module.exports = {
   create: createTrips,
-  addPlace
+  addPlace, removePlace
 }

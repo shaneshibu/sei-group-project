@@ -26,6 +26,7 @@ router.route('/users/:id/trips')
 
 router.route('/users/:id/trips/:tripId')
   .put(trips.addPlace)
+  .delete(trips.removePlace)
 
 router.route('/*')
   .all((req, res) => res.status(404)
