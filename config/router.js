@@ -2,11 +2,11 @@ const router = require('express').Router()
 const users = require('../controllers/auth')
 
 // resgister route
-router.route('/wanderlust/register')
+router.route('/register')
   .post(users.register)
 
 // login root
-router.route('/wanderlust/login')
+router.route('/login')
   .post(users.login)
 
 router.route('/*')
