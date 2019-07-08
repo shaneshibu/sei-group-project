@@ -1,5 +1,13 @@
 const Trip = require('../models/trip')
 
+function indexTrips(req, res, next) {
+  console.log('index trips')
+  Trip
+    .find()
+    .then(trips => res.status(200).json(trips))
+    .catch(next)
+}
+
 function createTrip(req, res, next) {
   console.log('create trip')
   console.log(req.params)
@@ -10,6 +18,17 @@ function createTrip(req, res, next) {
   Trip
     .create(body)
     .then(trip => res.status(201).json(trip))
+    .catch(next)
+}
+
+function showTrip(req, res, next) {
+  console.log('show place')
+  Trip
+    .findById(req.params.tripId)
+    .then(trip => {
+      if (!trip) throw new Error('Not Found')
+      res.status(200).json(trip)
+    })
     .catch(next)
 }
 
@@ -69,10 +88,11 @@ function removePlace(req, res, next) {
 }
 
 module.exports = {
+  index: indexTrips,
   create: createTrip,
   edit: editTrip,
+  show: showTrip,
+  delete: deleteTrip,
   addPlace,
-  removePlace,
-  deleteTrip
-
+  removePlace
 }

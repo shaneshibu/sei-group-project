@@ -22,15 +22,15 @@ router.route('/users/:id')
   .delete(users.delete)
 
 router.route('/users/:id/trips')
+  .get(trips.index)
   .post(trips.create)
 
 router.route('/users/:id/trips/:tripId')
+  .get(trips.show)
   .put(trips.edit)
+  .delete(trips.delete)
   .post(trips.addPlace)
-  .get(trips.showTrip)
   .patch(trips.removePlace)
-  .delete(trips.deleteTrip)
-
 
 router.route('/*')
   .all((req, res) => res.status(404)
