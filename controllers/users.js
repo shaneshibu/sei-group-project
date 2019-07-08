@@ -20,6 +20,15 @@ function showRoute(req, res, next) {
     .catch(next)
 }
 
+<<<<<<< HEAD
+// function createRoute(req, res, next) {
+//   req.body.user = req.currentUser
+//   User
+//     .create(req.body)
+//     .then(user => res.status(201).json(user))
+//     .catch(next)
+// }
+=======
 function createRoute(req, res, next) {
   req.body.user = req.currentUser
   User
@@ -27,6 +36,7 @@ function createRoute(req, res, next) {
     .then(user => res.status(201).json(user))
     .catch(next)
 }
+>>>>>>> development
 
 function editRoute(req, res , next) {
   User
@@ -56,7 +66,10 @@ function deleteRoute(req, res, next) {
 module.exports = {
   index: indexRoute,
   show: showRoute,
+<<<<<<< HEAD
+=======
   create: createRoute,
+>>>>>>> development
   edit: editRoute,
   delete: deleteRoute
 }
