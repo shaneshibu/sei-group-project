@@ -62,7 +62,7 @@ function editRoute(req, res , next) {
     .findById(req.params.id)
     .then(user => {
       if (!user) throw new Error('Not Found')
-      if (!user.user.equals(req.currentUser._id)) throw new Error('Unauthorized')
+      // if (!user.user.equals(req.currentUser._id)) throw new Error('Unauthorized')
       Object.assign(user, req.body)
       return user.save()
     })

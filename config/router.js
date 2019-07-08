@@ -16,6 +16,8 @@ router.route('/users')
 // single user
 router.route('/users/:id')
   .get(users.show)
+//edit user
+  .put(users.edit)
 
 router.route('/*')
   .all((req, res) => res.status(404)
