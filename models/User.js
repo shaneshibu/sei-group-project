@@ -6,22 +6,60 @@ const bcrypt = require('bcrypt')
 
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
   // trips: { [tripSchema] },
-  locationHome: { type: String, required: true }
-  // passwordConfirmation: { type: String, required: true }
+  locationHome: {
+    type: String,
+    required: true
+  }
 })
 
-//check unique -theres a plugin for that!
+// Unique option on its own is not a validator. Mongoose unique validator adds pre-save validation for unique fields ^^ in a Mongoose schema
+userSchema.plugin(require('mongoose-unique-validator'))
 
 // userSchema - make password conf virtual
+userSchema
+  .virtual('passwordConfirmation')
+  .set(function setPasswordConfirmation(passwordConfirmation){
+    this._passwordConfirmation = passwordConfirmation
+  })
 
-// pre-validation of password - is it filled in/the same
+// pre-validation of password - is it filled in/the same?
+userSchema
+  .pre('validate', function checkPassword(next) {
+    if (this.isModified('password') && this._passwordConfirmation !== this.password) {
+      this.invalidate('passwordConfirmation', 'does not match')
+    }
+    next()
+  })
+// If so move on.
 
-// hash passsword before saving
+// hash (modified) passsword before saving
+userSchema
+  .pre('save', function hashPassword(next) {
+    if (this.isModified('password')) {
+      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8))
+    }
+    next()
+  })
+//
 
 // compare/synch hashed
+userSchema.methods.validatePassword = function validatePassword(password) {
+  return bcrypt.compareSync(password, this.password)
+}
 
 module.exports = mongoose.model('User', userSchema)
