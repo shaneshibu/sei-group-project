@@ -31,8 +31,9 @@ function deleteTrip(req, res, next) {
   Trip
     .findByIdAndRemove(req.params.tripId)
     .then(trip => {
+      console.log(req.params.tripId)
       if (!trip) throw new Error('Not Found')
-      trip.remove()
+      res.status(204).end()
     })
     .catch(next)
 }
@@ -67,22 +68,11 @@ function removePlace(req, res, next) {
     .catch(next)
 }
 
-function showTrip(req, res, next) {
-  console.log('show place')
-  Trip
-    .findById(req.params.tripId)
-    .then(trip => {
-      if (!trip) throw new Error('Not Found')
-      res.status(200).json(trip)
-    })
-    .catch(next)
-}
-
 module.exports = {
   create: createTrip,
   edit: editTrip,
   addPlace,
   removePlace,
-  showTrip,
   deleteTrip
+
 }
