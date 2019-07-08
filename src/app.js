@@ -9,8 +9,7 @@ const App = () => (
     <main>
       <h1 className="title">Home Page</h1>
     </main>
-  </BrowserRouter>,
-  console.log('boo')
+  </BrowserRouter>
 )
 
 ReactDOM.render(
