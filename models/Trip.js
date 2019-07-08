@@ -34,7 +34,7 @@ const tripSchema = new mongoose.Schema({
     required: true
   },
   places: [ { type: String } ],
-  user_id: { type: String, required: true }
+  user_id: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })
 
 module.exports = mongoose.model('Trip', tripSchema)
