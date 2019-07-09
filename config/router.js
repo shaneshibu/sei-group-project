@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const users = require('../controllers/auth')
 const trips = require('../controllers/trips')
+const places = require('../controllers/places')
 
 // resgister route
 router.route('/register')
@@ -29,8 +30,14 @@ router.route('/users/:id/trips/:tripId')
   .get(trips.show)
   .put(trips.edit)
   .delete(trips.delete)
-  .post(trips.addPlace)
   .patch(trips.removePlace)
+
+router.route('/places')
+  .get(places.index)
+
+router.route('/places/:placeId')
+  .get(places.show)
+  .post(trips.addPlace)
 
 router.route('/*')
   .all((req, res) => res.status(404)

@@ -29,10 +29,7 @@ const bcrypt = require('bcrypt')
 // })
 
 const tripSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
+  title: { type: String, required: true },
   places: [ { type: String } ],
   user_id: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })

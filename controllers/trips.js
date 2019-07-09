@@ -1,4 +1,5 @@
 const Trip = require('../models/trip')
+const Place = require('../models/place')
 
 function indexTrips(req, res, next) {
   console.log('index trips')
@@ -57,22 +58,33 @@ function deleteTrip(req, res, next) {
     .catch(next)
 }
 
-function addPlace(req, res, next) {
+function addPlaceToTrip(req, res, next) {
   console.log('add place')
   console.log(req.params)
-  Trip
-    .findById(req.params.tripId)
-    .then(trip => {
-      if (!trip) throw new Error('Not Found')
-      if (!req.body.placeId.length) throw new Error('ValidationError')
-      trip.places.push(req.body.placeId)
-      trip.save()
-      res.status(201).json(trip)
+  // triposo POI id in req.body
+  // if no users have added this place to a trip before, create this place in our api
+  Place
+    .findOne({ triposoId: req.params.placeId })
+    .then(place => {
+      if (!place) return Place.create({ triposoId: req.params.placeId })
+      return place
+    })
+    .then((place) => {
+      //add place to trip
+      Trip
+        .findById(req.body.tripId)
+        .then(trip => {
+          if (!trip) throw new Error('Not Found')
+          if (!req.body.placeId.length) throw new Error('ValidationError')
+          trip.places.push(place)
+          trip.save()
+          res.status(201).json(trip)
+        })
     })
     .catch(next)
 }
 
-function removePlace(req, res, next) {
+function removePlaceFromTrip(req, res, next) {
   console.log('remove place')
   console.log(req.params)
   Trip
@@ -93,6 +105,6 @@ module.exports = {
   edit: editTrip,
   show: showTrip,
   delete: deleteTrip,
-  addPlace,
-  removePlace
+  addPlace: addPlaceToTrip,
+  removePlace: removePlaceFromTrip
 }
