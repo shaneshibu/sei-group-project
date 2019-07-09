@@ -8,7 +8,13 @@ class Register extends React.Component {
 
   render() {
     return (
-      <h1>Register Page</h1>
+      <section className="section">
+        <div className="container">
+          <h1 className="title">
+            Register Page
+          </h1>
+        </div>
+      </section>
     )
   }
 }

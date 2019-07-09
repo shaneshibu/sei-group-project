@@ -8,7 +8,13 @@ class Login extends React.Component {
 
   render() {
     return (
-      <h1>Login Page</h1>
+      <section className="section">
+        <div className="container">
+          <h1 className="title">
+            Login Page
+          </h1>
+        </div>
+      </section>
     )
   }
 }

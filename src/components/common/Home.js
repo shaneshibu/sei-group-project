@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 
-class UsersIndex extends React.Component {
+class Home extends React.Component {
   constructor() {
     super()
   }
@@ -11,7 +10,7 @@ class UsersIndex extends React.Component {
       <section className="section">
         <div className="container">
           <h1 className="title">
-            Users Index Page
+            Home Page
           </h1>
         </div>
       </section>
@@ -19,4 +18,4 @@ class UsersIndex extends React.Component {
   }
 }
 
-export default UsersIndex
+export default Home
