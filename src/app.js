@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Link, Route } from 'react-router-dom'
 import 'bulma'
 
 // import Destinations from './components/Destinations'
+import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -14,7 +15,7 @@ import TripsCreate from './components/trips/TripsCreate'
 const App = () => (
   <BrowserRouter>
     <main>
-      {/* <Navbar /> */}
+      <Navbar />
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
