@@ -8,7 +8,13 @@ const router = require('./config/router')
 const logger = require('./lib/logger')
 const errorHandler = require('./lib/errorHandler')
 
-mongoose.connect(dbURI, { useNewUrlParser: true })
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+}
+
+mongoose.connect(dbURI, options, () => console.log(`Connected to ${dbURI}`))
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
