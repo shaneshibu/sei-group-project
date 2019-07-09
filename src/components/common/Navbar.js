@@ -16,7 +16,8 @@ const Navbar = () => (
       <div className="navbar-end">
         <Link className="navbar-item" to="/register">Register</Link>
         <Link className="navbar-item" to="/login">Login</Link>
-        <Link className="navbar-item" to="/trips/new">Make a new Trip</Link>
+        <Link className="navbar-item" to="/trips">Browse Trips</Link>
+        <Link className="navbar-item" to="/users/:id/trips">My Trips</Link>
         <Link className="navbar-item" to="/users">People</Link>
         <Link className="navbar-item" to="/users/:id">My Profile</Link>
       </div>
