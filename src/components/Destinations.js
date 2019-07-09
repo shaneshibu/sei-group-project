@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-// const { token, account } = require('./config/env')
+const { token, account } = require('/Users/daniela/Development/projects/sei-group-project/config/env.js')
 
 class Destinations extends Component {
   constructor() {
@@ -17,25 +17,31 @@ class Destinations extends Component {
   }
 
   getDestinations() {
-    // const triposoAPI = 'https://www.triposo.com/api/20181213/'
-    // const path = 'location' - could be empty
-    // const format '.json'
-    // const querySign = '?'
-    // const queryParams = 'location_id=London&annotate=trigram:here&trigram=>=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score'
-    // const account = `&account=${account}`
-    // const token = `&token=${token}`
-    axios.get('https://www.triposo.com/api/20181213/poi.json?location_id=London&annotate=trigram:here&trigram=>=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score&account=ZU9GVO0H&token=gecvyh2juuwkrp5uif4yicwczfaq4ytd')
+    axios.get(`https://www.triposo.com/api/20181213/poi.json?location_id=London&annotate=trigram:general&trigram=>=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score&account=${account}&token=${token}`)
       .then( res => {
-        console.log(res)
+        console.log(res.data.results)
+        console.log(typeof data)
           .catch(err => console.log(err))
       })
   }
 
   render() {
+    const { destinations } = this.state
+    if (!destinations) return null
     return (
-      <h1>Boo!</h1>
+      <div>
+        <ul>
+          {
+            destinations.map(destination => (
+              <li
+                key={`${destination.location_id}`}>
+                {destination.name}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     )
   }
 }
-
 export default Destinations
