@@ -11,6 +11,7 @@ import Login from './components/auth/Login'
 import UsersIndex from './components/users/UsersIndex'
 import UsersShow from './components/users/UsersShow'
 import TripsCreate from './components/trips/TripsCreate'
+import TripsShow from './components/trips/TripsShow'
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const App = () => (
         <Route exact path='/users/:id' component={UsersShow} />
         <Route exact path="/users" component={UsersIndex} />
         <Route exact path="/trips/new" component={TripsCreate} />
+        <Route exact path="/trips/:id" component={TripsShow} />
         <Route exact path="/" component={Home} />
       </Switch>
     </main>
