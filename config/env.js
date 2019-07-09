@@ -6,4 +6,6 @@ const secret = process.env.SECRET || 'special sauce to my salt'
 
 const token = process.env.TRIPOSO_TOKEN
 
-module.exports = { port, dbURI, secret, token }
+const account = process.env.TRIPOSO_ACCOUNT
+
+module.exports = { port, dbURI, secret, token, account }
