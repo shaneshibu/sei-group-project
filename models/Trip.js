@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
 
 // This is the schema that represents a trip the user has made.
 // There can be 0 or many on a users profile.
@@ -30,7 +29,7 @@ const bcrypt = require('bcrypt')
 
 const tripSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  places: [ { type: String } ],
+  places: [ { type: mongoose.Schema.ObjectId, ref: 'Place' } ],
   user_id: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })
 

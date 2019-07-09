@@ -23,7 +23,7 @@ router.route('/users/:id')
   .delete(users.delete)
 
 router.route('/users/:id/trips')
-  .get(trips.index)
+  .get(trips.getUserTrips)
   .post(trips.create)
 
 router.route('/users/:id/trips/:tripId')
@@ -31,6 +31,9 @@ router.route('/users/:id/trips/:tripId')
   .put(trips.edit)
   .delete(trips.delete)
   .patch(trips.removePlace)
+
+router.route('/trips')
+  .get(trips.index)
 
 router.route('/places')
   .get(places.index)

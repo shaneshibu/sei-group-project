@@ -9,6 +9,18 @@ function indexTrips(req, res, next) {
     .catch(next)
 }
 
+function indexUserTrips(req, res, next) {
+  console.log('user\'s trips')
+  console.log(req.params)
+  Trip
+    .find({ user_id: req.params.id })
+    .then(trips => {
+      if (!trips.length) res.status(204).json({ message: `${req.params.id} doesn't have any trips` })
+      res.status(200).json(trips)
+    })
+    .catch(next)
+}
+
 function createTrip(req, res, next) {
   console.log('create trip')
   console.log(req.params)
@@ -101,6 +113,7 @@ function removePlaceFromTrip(req, res, next) {
 
 module.exports = {
   index: indexTrips,
+  getUserTrips: indexUserTrips,
   create: createTrip,
   edit: editTrip,
   show: showTrip,
