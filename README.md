@@ -101,7 +101,7 @@ GET http://localhost:3999/api/users/
 ###  **/api/users/:id**
 #### GET - Show User
 ##### Example Request  
-GET http://localhost:3999/api/users/:id
+GET http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 
 ##### Example Response  
 ```  
@@ -115,7 +115,7 @@ GET http://localhost:3999/api/users/:id
 ```
 #### PUT - Edit User
 ##### Example Request  
-PUT http://localhost:3999/api/users/:id
+PUT http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 
 ##### Parameters  
 **username** - Type: String - Optional  
@@ -143,9 +143,188 @@ PUT http://localhost:3999/api/users/:id
 ```
 #### DELETE - Delete User
 ##### Example Request  
-DELETE http://localhost:3999/api/users/:id
+DELETE http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 
 ##### Example Response  
 ```  
 204 No Content
+```
+
+### **/api/trips**  
+#### GET - Trips Index
+##### Example Request  
+GET http://localhost:3999/api/trips/
+
+##### Example Response  
+```  
+200 OK
+[
+  {
+    "places": [
+      "5d24c42d4ec4f8557d0eb419",
+      "5d24c42d4ec4f8557d0eb41d",
+      "5d24c42d4ec4f8557d0eb421"
+    ],
+    "_id": "5d24c42d4ec4f8557d0eb449",
+    "title": "Brussels trip",
+    "user_id": "5d24c42c4ec4f8557d0eb415",
+    "__v": 0
+  },
+  {
+    "places": [
+      "5d24c42d4ec4f8557d0eb425",
+      "5d24c42d4ec4f8557d0eb429",
+      "5d24c42d4ec4f8557d0eb42d"
+    ],
+    "_id": "5d24c42d4ec4f8557d0eb44a",
+    "title": "Paris trip",
+    "user_id": "5d24c42c4ec4f8557d0eb416",
+    "__v": 0
+  },
+  {
+    "places": [
+      "5d24c42d4ec4f8557d0eb43d",
+      "5d24c42d4ec4f8557d0eb441",
+      "5d24c42d4ec4f8557d0eb445"
+    ],
+    "_id": "5d24c42d4ec4f8557d0eb44c",
+    "title": "Tokyo trip",
+    "user_id": "5d24c42c4ec4f8557d0eb418",
+    "__v": 0
+  }
+]
+```
+
+### **/users/:id/trips**  
+#### GET - User Trips Index
+##### Example Request  
+GET http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
+
+##### Example Response  
+```  
+200 OK
+[
+  {
+    "places": [
+      "5d24c42d4ec4f8557d0eb425",
+      "5d24c42d4ec4f8557d0eb429",
+      "5d24c42d4ec4f8557d0eb42d"
+    ],
+    "_id": "5d24c42d4ec4f8557d0eb44a",
+    "title": "Paris trip",
+    "user_id": "5d24c42c4ec4f8557d0eb416",
+    "__v": 0
+  }
+]
+```
+
+### **/api/places**  
+#### GET - Places Index - ***(From our api)***  
+**** **Testing Purposes Only - Not to be deployed** ****
+##### Example Request  
+GET http://localhost:3999/api/places/
+
+##### Example Response  
+```  
+200 OK
+[
+  {
+    "images": [],
+    "_id": "5d24c42d4ec4f8557d0eb419",
+    "triposoId": "W__3517898",
+    "comments": [
+      {
+        "_id": "5d24c42d4ec4f8557d0eb41c",
+        "text": "Comment 1",
+        "user": "5d24c42c4ec4f8557d0eb416",
+        "createdAt": "2019-07-09T16:43:25.163Z",
+        "updatedAt": "2019-07-09T16:43:25.163Z"
+      },
+      {
+        "_id": "5d24c42d4ec4f8557d0eb41b",
+        "text": "Comment 2",
+        "user": "5d24c42c4ec4f8557d0eb417",
+        "createdAt": "2019-07-09T16:43:25.164Z",
+        "updatedAt": "2019-07-09T16:43:25.164Z"
+      },
+      {
+        "_id": "5d24c42d4ec4f8557d0eb41a",
+        "text": "Comment 3",
+        "user": "5d24c42c4ec4f8557d0eb418",
+        "createdAt": "2019-07-09T16:43:25.164Z",
+        "updatedAt": "2019-07-09T16:43:25.164Z"
+      }
+    ],
+    "ratings": [],
+    "__v": 0
+  },
+  {
+    "images": [],
+    "_id": "5d24c42d4ec4f8557d0eb429",
+    "triposoId": "N__829526180",
+    "comments": [
+      {
+        "_id": "5d24c42d4ec4f8557d0eb42c",
+        "text": "Comment 4",
+        "user": "5d24c42c4ec4f8557d0eb415",
+        "createdAt": "2019-07-09T16:43:25.165Z",
+        "updatedAt": "2019-07-09T16:43:25.165Z"
+      },
+      {
+        "_id": "5d24c42d4ec4f8557d0eb42b",
+        "text": "Comment 5",
+        "user": "5d24c42c4ec4f8557d0eb417",
+        "createdAt": "2019-07-09T16:43:25.165Z",
+        "updatedAt": "2019-07-09T16:43:25.165Z"
+      },
+      {
+        "_id": "5d24c42d4ec4f8557d0eb42a",
+        "text": "Comment 6",
+        "user": "5d24c42c4ec4f8557d0eb418",
+        "createdAt": "2019-07-09T16:43:25.165Z",
+        "updatedAt": "2019-07-09T16:43:25.165Z"
+      }
+    ],
+    "ratings": [],
+    "__v": 0
+  }
+]
+```
+###  **/api/places/:id**
+#### GET - Show Place
+##### Example Request  
+GET http://localhost:3999/api/places/W__3517898
+
+##### Example Response  
+```  
+{
+  "images": [],
+  "_id": "5d24c42d4ec4f8557d0eb419",
+  "triposoId": "W__3517898",
+  "comments": [
+    {
+      "_id": "5d24c42d4ec4f8557d0eb41c",
+      "text": "Comment 1",
+      "user": "5d24c42c4ec4f8557d0eb416",
+      "createdAt": "2019-07-09T16:43:25.163Z",
+      "updatedAt": "2019-07-09T16:43:25.163Z"
+    },
+    {
+      "_id": "5d24c42d4ec4f8557d0eb41b",
+      "text": "Comment 2",
+      "user": "5d24c42c4ec4f8557d0eb417",
+      "createdAt": "2019-07-09T16:43:25.164Z",
+      "updatedAt": "2019-07-09T16:43:25.164Z"
+    },
+    {
+      "_id": "5d24c42d4ec4f8557d0eb41a",
+      "text": "Comment 3",
+      "user": "5d24c42c4ec4f8557d0eb418",
+      "createdAt": "2019-07-09T16:43:25.164Z",
+      "updatedAt": "2019-07-09T16:43:25.164Z"
+    }
+  ],
+  "ratings": [],
+  "__v": 0
+}
 ```
