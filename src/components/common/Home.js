@@ -8,13 +8,15 @@ class Home extends React.Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container">
-          <h1 className="title">
-            Home Page
-          </h1>
+      <section className="hero is-fullheight-with-navbar">
+        <div className="hero-image">
+          <div className="container">
+            <h1 className="title">
+            Walkabout
+            </h1>
+          </div>
+          <Destinations />
         </div>
-        <Destinations />
       </section>
 
     )
