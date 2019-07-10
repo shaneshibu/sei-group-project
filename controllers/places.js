@@ -14,7 +14,7 @@ function indexPlaces(req, res, next) {
 function showPlace(req, res, next) {
   console.log('show place')
   Place
-    .findById(req.params.placeId)
+    .findOne({ triposoId: req.params.placeId })
     .then(place => {
       if (!place) throw new Error('Not Found')
       res.status(200).json(place)
