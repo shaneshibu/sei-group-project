@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 //axios request variables
-const { token, account } = require('/Users/daniela/Development/projects/sei-group-project/config/env.js')
+const { token, account } = require('../../../config/env')
 const triposoAPI = 'https://www.triposo.com/api/20181213/'
 const location = 'London'
 const format = '.json'
