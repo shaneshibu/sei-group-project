@@ -30,6 +30,14 @@ const userSchema = new mongoose.Schema({
 // Unique option on its own is not a validator. Mongoose unique validator adds pre-save validation for unique fields ^^ in a Mongoose schema
 userSchema.plugin(require('mongoose-unique-validator'))
 
+// When returning a user from a GET request, don't return the password
+userSchema.set('toJSON', {
+  transform(doc, json) {
+    delete json.password
+    return json
+  }
+})
+
 // userSchema - make password conf virtual
 userSchema
   .virtual('passwordConfirmation')

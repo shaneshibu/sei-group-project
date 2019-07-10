@@ -1,6 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Auth from '../../lib/Auth'
 
 const Navbar = () => (
   <nav className="navbar is-dark">
@@ -14,12 +14,12 @@ const Navbar = () => (
     </div>
     <div className="navbar-menu">
       <div className="navbar-end">
-        <Link className="navbar-item" to="/register">Register</Link>
-        <Link className="navbar-item" to="/login">Login</Link>
+        {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
+        {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
         <Link className="navbar-item" to="/trips">Browse Trips</Link>
-        <Link className="navbar-item" to="/users/:id/trips">My Trips</Link>
+        {Auth.isAuthenticated() && <Link className="navbar-item" to="/users/:id/trips">My Trips</Link>}
         <Link className="navbar-item" to="/users">People</Link>
-        <Link className="navbar-item" to="/users/:id">My Profile</Link>
+        {Auth.isAuthenticated() && <Link className="navbar-item" to="/users/:id">My Profile</Link>}
       </div>
     </div>
   </nav>
