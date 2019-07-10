@@ -19,9 +19,15 @@ class Auth {
     return JSON.parse(atob(parts[1]))
   }
 
+  static getUser() {
+    const payload = this.getPayload()
+    return payload.sub
+  }
+
   static isAuthenticated() {
     const payload = this.getPayload()
     const now = Math.round(Date.now() / 1000)
+    console.log(now < payload.exp)
     return now < payload.exp
   }
 }

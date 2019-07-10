@@ -16,6 +16,7 @@ import UsersTripsIndex from './components/trips/UsersTripsIndex'
 import TripsIndex from './components/trips/TripsIndex'
 // import TripsCreate from './components/trips/TripsCreate'
 import TripsShow from './components/trips/TripsShow'
+import SecureRoute from './components/common/SecureRoute'
 
 const App = () => (
   <BrowserRouter>
@@ -24,8 +25,8 @@ const App = () => (
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <Route exact path="/users/:id/trips" component={UsersTripsIndex} />
-        <Route exact path='/users/:id' component={UsersShow} />
+        <SecureRoute exact path="/users/:id/trips" component={UsersTripsIndex} />
+        <SecureRoute exact path='/users/:id' component={UsersShow} />
         <Route exact path="/users" component={UsersIndex} />
         <Route exact path="/trips" component={TripsIndex} />
         <Route exact path="/trips/:id" component={TripsShow} />
