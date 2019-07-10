@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 
 //axios request variables
@@ -13,7 +13,7 @@ const format = '.json'
 
 const paramsBlock = 'poi_id=W__3107461'
 
-class ShowPlace extends Component {
+class ShowPOI extends Component {
   constructor(props) {
     super(props)
 
@@ -44,4 +44,4 @@ class ShowPlace extends Component {
   }
 }
 
-export default ShowPlace
+export default ShowPOI

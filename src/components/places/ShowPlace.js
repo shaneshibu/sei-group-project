@@ -20,6 +20,7 @@ class ShowPlace extends Component {
 
   componentDidMount() {
     this.getPlace()
+    console.log(this.props.match.params.placeId)
   }
 
   //TODO: figure out how to reuse the destiantions request across multiple pages
