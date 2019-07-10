@@ -36,6 +36,7 @@ class Destinations extends Component {
     // e.persist() - what does this do??
     console.log( 'selected: ', e )
     this.setState( { selected: e }, () => this.props.history.push(`/places/${this.state.selected}`))
+    
   }
 
   render() {
