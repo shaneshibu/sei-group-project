@@ -1,5 +1,5 @@
 import React from 'react'
-import Destinations from '../trips/Destinations.js'
+import Destinations from '../places/Destinations.js'
 
 class Home extends React.Component {
   constructor() {
