@@ -13,7 +13,7 @@ const format = '.json'
 
 const paramsBlock = 'poi_id=W__3107461'
 
-class ShowPlace extends Component {
+class ShowPOI extends Component {
   constructor(props) {
     super(props)
 
