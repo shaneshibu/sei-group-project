@@ -5,6 +5,7 @@ function indexTrips(req, res, next) {
   console.log('index trips')
   Trip
     .find()
+    .populate('places')
     .then(trips => res.status(200).json(trips))
     .catch(next)
 }
@@ -14,6 +15,7 @@ function indexUserTrips(req, res, next) {
   console.log(req.params)
   Trip
     .find({ user_id: req.params.id })
+    .populate('places')
     .then(trips => {
       if (!trips.length) res.status(204).json({ message: `${req.params.id} doesn't have any trips` })
       res.status(200).json(trips)
@@ -38,6 +40,7 @@ function showTrip(req, res, next) {
   console.log('show place')
   Trip
     .findById(req.params.tripId)
+    .populate('places')
     .then(trip => {
       if (!trip) throw new Error('Not Found')
       res.status(200).json(trip)
@@ -78,7 +81,7 @@ function addPlaceToTrip(req, res, next) {
   Place
     .findOne({ triposoId: req.body.triposoId })
     .then(place => {
-      if (!place) return Place.create({ triposoId: req.body.triposoId })
+      if (!place) return Place.create({ triposoId: req.body.triposoId, thumbnail: req.body.thumbnail })
       return place
     })
     .then((place) => {
