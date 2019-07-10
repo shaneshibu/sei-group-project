@@ -10,6 +10,7 @@ import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import ShowPlace from './components/places/ShowPlace'
+import ShowPOI from './components/places/ShowPOI'
 import UsersIndex from './components/users/UsersIndex'
 import UsersShow from './components/users/UsersShow'
 import UsersTripsIndex from './components/trips/UsersTripsIndex'
@@ -25,6 +26,7 @@ const App = () => (
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/places/:placeId" component={ShowPlace} />
+        <Route path="/places/:placeId" component={ShowPOI} />
         <Route exact path="/users/:id/trips" component={UsersTripsIndex} />
         <Route exact path='/users/:id' component={UsersShow} />
         <Route exact path="/users" component={UsersIndex} />

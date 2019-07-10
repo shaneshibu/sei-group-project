@@ -46,7 +46,7 @@ POST http://localhost:3999/api/login
 ##### Example Payload  
 ```  
 {
-  "email": "daniela@email.com"
+  "email": "daniela@email.com",
   "password": "pass"
 }
 ```  
@@ -195,7 +195,7 @@ GET http://localhost:3999/api/trips/
 ]
 ```
 
-### **/users/:id/trips**  
+### **/api/users/:id/trips**  
 #### GET - User Trips Index
 ##### Example Request  
 GET http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
@@ -217,7 +217,144 @@ GET http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
   }
 ]
 ```
+#### POST - Create New Trip
+##### Example Request  
+POST http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
 
+##### Parameters  
+**email** - Type: String - Required  
+**password** - Type: String - Required  
+
+##### Example Payload  
+```  
+{
+  "title": "Amsterdam trip 2019",
+  "user_id": "5d247d6b4202603cf1d86f2d"
+}
+```  
+##### Example Response  
+```  
+201 Created
+{
+  "places": [],
+  "_id": "5d25e55178f035671fea12f4",
+  "title": "Amsterdam trip 2019",
+  "user_id": "5d247d6b4202603cf1d86f2d",
+  "__v": 0
+}
+```
+
+### **/api/trips/:tripId**  
+#### GET - Show Trip
+##### Example Request  
+GET http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
+
+##### Example Response  
+```  
+200 OK
+{
+  "places": [
+    "5d24c42d4ec4f8557d0eb419",
+    "5d24c42d4ec4f8557d0eb41d",
+    "5d24c42d4ec4f8557d0eb421"
+  ],
+  "_id": "5d24c42d4ec4f8557d0eb449",
+  "title": "Brussels trip",
+  "user_id": "5d24c42c4ec4f8557d0eb415",
+  "__v": 0
+}
+```
+#### PUT - Edit Trip
+##### Example Request  
+PUT http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
+
+##### Parameters  
+**title** - Type: String - Required  
+
+##### Example Payload  
+```  
+{
+	"title": "Brussels trip 2019"
+}
+```  
+##### Example Response  
+```  
+202 Accepted  
+{
+  "places": [
+    "5d24c42d4ec4f8557d0eb419",
+    "5d24c42d4ec4f8557d0eb41d",
+    "5d24c42d4ec4f8557d0eb421"
+  ],
+  "_id": "5d24c42d4ec4f8557d0eb449",
+  "title": "Brussels trip 2019",
+  "user_id": "5d24c42c4ec4f8557d0eb415",
+  "__v": 0
+}
+```
+#### POST - Add New Place To Trip
+##### Example Request  
+POST http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
+
+##### Parameters  
+**triposoId** - Type: String - Required  
+
+##### Example Payload  
+```  
+{
+  "triposoId": "W__3517898"
+}
+```  
+##### Example Response  
+```  
+202 Accepted
+{
+  "places": [
+    "5d24c42d4ec4f8557d0eb419",
+    "5d24c42d4ec4f8557d0eb421",
+    "5d25f43357e64f6bf95da287"
+  ],
+  "_id": "5d24c42d4ec4f8557d0eb449",
+  "title": "Brussels trip",
+  "user_id": "5d24c42c4ec4f8557d0eb415",
+  "__v": 1
+}
+```
+#### PATCH - Remove Place From Trip
+##### Example Request  
+PATCH http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
+
+##### Parameters  
+**placeId** - Type: String - Required  
+
+##### Example Payload  
+```  
+{
+	"placeId": "5d24c42d4ec4f8557d0eb41d"
+}
+```  
+##### Example Response  
+```  
+202 Accepted  
+{
+  "places": [
+    "5d24c42d4ec4f8557d0eb419",
+    "5d24c42d4ec4f8557d0eb421"
+  ],
+  "_id": "5d24c42d4ec4f8557d0eb449",
+  "title": "Brussels trip",
+  "user_id": "5d24c42c4ec4f8557d0eb415",
+  "__v": 0
+}
+```
+#### DELETE - Delete Trip
+##### Example Request  
+DELETE http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
+
+##### Example Response  
+```  
+204 No Content
+```
 ### **/api/places**  
 #### GET - Places Index - ***(From our api)***  
 **** **Testing Purposes Only - Not to be deployed** ****
@@ -297,6 +434,45 @@ GET http://localhost:3999/api/places/W__3517898
 
 ##### Example Response  
 ```  
+{
+  "images": [],
+  "_id": "5d24c42d4ec4f8557d0eb419",
+  "triposoId": "W__3517898",
+  "comments": [
+    {
+      "_id": "5d24c42d4ec4f8557d0eb41c",
+      "text": "Comment 1",
+      "user": "5d24c42c4ec4f8557d0eb416",
+      "createdAt": "2019-07-09T16:43:25.163Z",
+      "updatedAt": "2019-07-09T16:43:25.163Z"
+    },
+    {
+      "_id": "5d24c42d4ec4f8557d0eb41b",
+      "text": "Comment 2",
+      "user": "5d24c42c4ec4f8557d0eb417",
+      "createdAt": "2019-07-09T16:43:25.164Z",
+      "updatedAt": "2019-07-09T16:43:25.164Z"
+    },
+    {
+      "_id": "5d24c42d4ec4f8557d0eb41a",
+      "text": "Comment 3",
+      "user": "5d24c42c4ec4f8557d0eb418",
+      "createdAt": "2019-07-09T16:43:25.164Z",
+      "updatedAt": "2019-07-09T16:43:25.164Z"
+    }
+  ],
+  "ratings": [],
+  "__v": 0
+}
+```
+### **/places/:placeId**  
+#### GET - Show Place
+##### Example Request  
+GET http://localhost:3999/api/places/W__3517898
+
+##### Example Response  
+```  
+200 OK
 {
   "images": [],
   "_id": "5d24c42d4ec4f8557d0eb419",

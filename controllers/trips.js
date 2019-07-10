@@ -5,6 +5,7 @@ function indexTrips(req, res, next) {
   console.log('index trips')
   Trip
     .find()
+    .populate('places')
     .then(trips => res.status(200).json(trips))
     .catch(next)
 }
@@ -14,6 +15,7 @@ function indexUserTrips(req, res, next) {
   console.log(req.params)
   Trip
     .find({ user_id: req.params.id })
+    .populate('places')
     .then(trips => {
       if (!trips.length) res.status(204).json({ message: `${req.params.id} doesn't have any trips` })
       res.status(200).json(trips)
@@ -38,6 +40,7 @@ function showTrip(req, res, next) {
   console.log('show place')
   Trip
     .findById(req.params.tripId)
+    .populate('places')
     .then(trip => {
       if (!trip) throw new Error('Not Found')
       res.status(200).json(trip)
@@ -76,21 +79,21 @@ function addPlaceToTrip(req, res, next) {
   // triposo POI id in req.body
   // if no users have added this place to a trip before, create this place in our api
   Place
-    .findOne({ triposoId: req.params.placeId })
+    .findOne({ triposoId: req.body.triposoId })
     .then(place => {
-      if (!place) return Place.create({ triposoId: req.params.placeId })
+      if (!place) return Place.create({ triposoId: req.body.triposoId, thumbnail: req.body.thumbnail })
       return place
     })
     .then((place) => {
       //add place to trip
       Trip
-        .findById(req.body.tripId)
+        .findById(req.params.tripId)
         .then(trip => {
           if (!trip) throw new Error('Not Found')
-          if (!req.body.placeId.length) throw new Error('ValidationError')
+          if (!req.body.triposoId.length) throw new Error('ValidationError')
           trip.places.push(place)
           trip.save()
-          res.status(201).json(trip)
+          res.status(202).json(trip)
         })
     })
     .catch(next)
@@ -104,7 +107,7 @@ function removePlaceFromTrip(req, res, next) {
     .then(trip => {
       if (!trip) throw new Error('Not Found')
       if (!req.body.placeId.length) throw new Error('ValidationError')
-      trip.places = trip.places.filter(place => place !== req.body.placeId)
+      trip.places = trip.places.filter(place => !place.equals(req.body.placeId))
       trip.save()
       res.status(202).json(trip)
     })
