@@ -4,12 +4,14 @@ import axios from 'axios'
 //axios request variables
 const { token, account } = require('../../../config/env')
 const triposoAPI = 'https://www.triposo.com/api/20181213/'
-const endpoint = 'location'
+const endpoint = 'property'
 const format = '.json'
+
+//https://www.triposo.com/api/20181213/property.json?poi_id=W__3107461&account=ZU9GVO0H&token=gecvyh2juuwkrp5uif4yicwczfaq4ytd
 
 //https://www.triposo.com/api/20181213/location.json?id=London&account=ZU9GVO0H&token=gecvyh2juuwkrp5uif4yicwczfaq4ytd
 
-// const paramsBlock = 'id=London'
+const paramsBlock = 'poi_id=W__3107461'
 
 class ShowPlace extends Component {
   constructor(props) {
@@ -24,20 +26,18 @@ class ShowPlace extends Component {
 
   //TODO: figure out how to reuse the destiantions request across multiple pages
   getPlace() {
-    axios.get(`${triposoAPI}${endpoint}${format}?id=${this.props.match.params.placeId}&account=${account}&token=${token}`)
-      .then(res => this.setState({ place: res.data.results[0] } ))
+    axios.get(`${triposoAPI}${endpoint}${format}?${paramsBlock}&account=${account}&token=${token}`)
+      .then(res => this.setState({ place: res.data } ))
       .catch(err => console.log(err))
   }
 
   render() {
     if (!this.state.place) return null
     console.log(this.state)
-    const { place } = this.state
     return (
       <section>
         <div>
-          <p>{place.name}</p>
-          <p>{place.snippet}</p>
+          {place.name}{place.id}
         </div>
       </section>
     )
