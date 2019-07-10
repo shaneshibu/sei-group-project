@@ -1,4 +1,5 @@
 import React from 'react'
+import Destinations from '/Users/daniela/Development/projects/sei-group-project/src/components/trips/Destinations.js'
 
 class Home extends React.Component {
   constructor() {
@@ -13,7 +14,9 @@ class Home extends React.Component {
             Home Page
           </h1>
         </div>
+        <Destinations />
       </section>
+
     )
   }
 }
