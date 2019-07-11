@@ -45,13 +45,8 @@ class TripsIndex extends React.Component {
                         </div>
                       ))}
                     </div >
-
-
-
-
-
                     <div className="card-header">
-                      <h4 className="card-header-title">User Id{trip.name}</h4>
+                      <h4 className="card-header-title">Traveller{trip.name}</h4>
                     </div>
                     <div className="card-image">
                       <figure className="image">
@@ -67,12 +62,6 @@ class TripsIndex extends React.Component {
               </div>
             ))}
           </div>
-
-
-
-
-
-
         </div>
       </section>
 

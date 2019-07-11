@@ -5,9 +5,59 @@
   background-image: url('http://wheelchairtraveling.com/wp-content/gallery/italy-tour-c-o/Tuscany-Siena-1.jpg');
   background-size: cover;
   background-repeat: repeat;
-  height: 800px
+  height: 800px;
 }
 
 h1 {
   color: white;
+}
+
+.outer-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+
+}
+
+.user-container {
+border: 1px solid grey;
+
+text-align: center;
+padding: 20px 80px;
+background-color: white;
+border-radius: 5px;
+}
+
+
+
+.user-image {
+border-radius: 50%;
+border: 2px solid grey;
+padding: 5px;
+
+}
+
+.name {
+font-size: 30px;
+color: red ;
+font-family: "Comic Sans MS";
+font-weight: bold;
+}
+
+.email {
+
+}
+
+.username {
+
+}
+
+.locationHome{
+
+}
+
+.page-container{
+  background-color: black;
+  min-height: 100vh;
 }
