@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const axios = require('axios')
 const User = require('../models/user')
 const Trip = require('../models/trip')
 const Place = require('../models/place')
@@ -8,38 +9,70 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true }, (err, d
   if (err) return console.log(err)
   db.dropDatabase()
     .then(() => {
-      return User.create([
+
+
+
+    })
+    .then(() => {
+      return axios.get('https://randomuser.me/api/?results=50&inc=name,email,login,nat,location,picture&noinfo')
+    })
+    .then(res => {
+      const newUsers =  res.data.results.map(user => {
+        const newUser = {
+          username: user.login.username,
+          name: `${user.name.first} ${user.name.last}`,
+          email: user.email,
+          password: 'pass',
+          passwordConfirmation: 'pass',
+          locationHome: `${user.location.city}, ${user.location.state}`,
+          image: user.picture.large
+        }
+        return newUser
+      })
+      //console.log(newUsers)
+      const users2 = [
         {
           username: 'dani',
+          name: 'Daniela',
           email: 'dani@email',
           password: 'pass',
           passwordConfirmation: 'pass',
-          locationHome: 'string'
+          locationHome: 'London',
+          image: 'https://www.fillmurray.com/g/256/256'
         },
         {
           username: 'seba',
+          name: 'Sebastian',
           email: 'seba@email',
           password: 'pass',
           passwordConfirmation: 'pass',
-          locationHome: 'someplace'
+          locationHome: 'Paris',
+          image: 'https://www.fillmurray.com/128/128'
         },
         {
           username: 'shane',
+          name: 'Shane',
           email: 'shane@email',
           password: 'pass',
           passwordConfirmation: 'pass',
-          locationHome: 'london'
+          locationHome: 'Berlin',
+          image: 'https://www.stevensegallery.com/g/256/256'
         },
         {
           username: 'cliff',
+          name: 'Cliff',
           email: 'cliff@email',
           password: 'pass',
           passwordConfirmation: 'pass',
-          locationHome: 'someplace 2'
+          locationHome: 'Tokyo',
+          image: 'https://www.placecage.com/gif/256/256'
         }
-      ])
+      ]
+      console.log(newUsers.concat(users2))
+      return User.create(newUsers.concat(users2))
     })
     .then(users => {
+      console.log(users)
       console.log(`${users.length} users seeded`)
       return Promise.all([users, Place.create([
         {
