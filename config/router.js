@@ -25,6 +25,7 @@ router.route('/users/:id')
 router.route('/users/:id/trips')
   .get(trips.getUserTrips)
   .post(trips.create)
+  .patch(trips.delete)
 
 router.route('/trips/:tripId')
   .get(trips.show)

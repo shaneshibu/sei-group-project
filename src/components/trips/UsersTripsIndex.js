@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Auth from '../../lib/Auth'
 
 class UsersTripsIndex extends React.Component {
   constructor() {
@@ -11,6 +12,8 @@ class UsersTripsIndex extends React.Component {
     //this.handleClick = this.handleClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.isOwner = this.isOwner.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
@@ -44,6 +47,21 @@ class UsersTripsIndex extends React.Component {
     }
   }
 
+  isOwner() {
+    return Auth.getUser() === this.props.match.params.id
+  }
+
+  handleDelete({ target }) {
+    const tripId = target.dataset.tripid
+    if (window.confirm('Are you sure you want to delete this Trip?')) {
+      axios.patch(`/api/users/${this.props.match.params.id}/trips`, {
+        tripId: tripId
+      })
+        .then(() => this.getUsersTrips())
+        .catch(err => console.log(err))
+    }
+  }
+
   render() {
     console.log(this.state)
     if (!this.state.trips) return null
@@ -68,18 +86,24 @@ class UsersTripsIndex extends React.Component {
                 <button className="button">Create</button>
               </div>
             </form>
-
-
-
           </div>
           {this.state.trips && this.state.trips.map(trip => (
             <div key={trip._id} data-tripid={trip._id}>
               <Link to={`/trips/${trip._id}`}>
-                <p className="subtitle" data-tripid={trip._id}>{trip.title}</p>
+                <p className="subtitle">{trip.title}</p>
               </Link>
               {trip.places.map(place => (
                 <small key={place._id}>- {place.name} -</small>
               ))}
+              {this.isOwner() &&
+                <button
+                  className="button"
+                  data-tripid={trip._id}
+                  onClick={this.handleDelete}
+                >
+                  Delete
+                </button>
+              }
             </div>
           ))
           }
