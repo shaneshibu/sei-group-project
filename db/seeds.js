@@ -68,7 +68,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true }, (err, d
           image: 'https://www.placecage.com/gif/256/256'
         }
       ]
-      console.log(newUsers.concat(users2))
+      console.log(users2.concat(newUsers))
       return User.create(newUsers.concat(users2))
     })
     .then(users => {
