@@ -21,15 +21,14 @@ h1 {
 }
 
 .user-container {
-border: 1px solid grey;
-
+border: 10px solid grey;
 text-align: center;
 padding: 20px 80px;
-background-color: white;
-border-radius: 5px;
+background-color: #f9f9f9;
+border-radius: 20px;
+width: 50%;
+
 }
-
-
 
 .user-image {
 border-radius: 50%;
@@ -41,23 +40,32 @@ padding: 5px;
 .name {
 font-size: 30px;
 color: red ;
-font-family: "Comic Sans MS";
+font-family: "Palatino Header";
 font-weight: bold;
 }
 
 .email {
-
+font-family: "Palatino Header";
 }
 
 .username {
-
+font-family: "Palatino Header";
 }
 
 .locationHome{
-
+font-family: "Palatino Header";
 }
 
 .page-container{
-  background-color: black;
-  min-height: 100vh;
+background-color: #d2c298;
+min-height: 100vh;
+}
+
+.section{
+background-color: #d2c298;
+
+}
+
+.title{
+  font-family: "Palatino Header"
 }
