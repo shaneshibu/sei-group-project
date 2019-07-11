@@ -30,11 +30,19 @@ class TripsIndex extends React.Component {
                 <Link to={`/trips/${trip._id}`}>
                   <div className="card">
                     <div className="card-header">
-                      <h4 className="card-header-title">Title{trip.name}</h4>
+                      <h4 className="card-header-title">{trip.title}</h4>
                     </div>
-                    <div className="card-header">
-                      <h4 className="card-header-title">Places{trip.name}</h4>
-                      {trip.places && trip.places.map((place, i) => (<div key={i}><h4>{place}</h4></div>
+                    <div className="card-content">
+                      {trip.places && trip.places.map((place, i) => (
+                        <div key={i}>
+                          <p>{place.name}</p>
+                          <p>{place.snippet}</p>
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img src={place.thumbnail} alt="Placeholder image" />
+                            </figure>
+                          </div>
+                        </div>
                       ))}
                     </div >
 
@@ -47,7 +55,7 @@ class TripsIndex extends React.Component {
                     </div>
                     <div className="card-image">
                       <figure className="image">
-                        <img src={trip.image} alt={trip.name} />
+                        <img src={trip.image} alt={trip.name}/>
                       </figure>
                     </div>
                     <div className="card-content">
