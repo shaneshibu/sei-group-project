@@ -64,12 +64,14 @@ function editTrip(req, res, next) {
 }
 
 function deleteTrip(req, res, next) {
+  console.log('delete trip')
+  console.log(req.body)
   Trip
-    .findByIdAndRemove(req.params.tripId)
-    .then(trip => {
-      console.log(req.params.tripId)
+    .findById(req.body.tripId)
+    .then((trip) => {
       if (!trip) throw new Error('Not Found')
-      res.status(204).end()
+      trip.remove()
+      res.sendStatus(204)
     })
     .catch(next)
 }
