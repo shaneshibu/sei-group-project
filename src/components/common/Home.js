@@ -1,9 +1,27 @@
 import React from 'react'
-import Destinations from '../trips/Destinations.js'
+import Destinations from '../places/Destinations.js'
 
 class Home extends React.Component {
   constructor() {
     super()
+
+    this.state = {
+      inputValue: null,
+      searchType: null
+    }
+    this.getInput = this.getInput.bind(this)
+    this.getSearchType = this.getSearchType.bind(this)
+  }
+
+  getInput(e) {
+    console.log( 'changed: ', e.target.value )
+    this.setState( { inputValue: e.target.value } )
+    // this.setState({ inputValue: e.target.value })
+  }
+
+  getSearchType(e) {
+    console.log(e.target.value)
+    this.setState( { searchType: e.target.value })
   }
 
   render() {
@@ -14,6 +32,17 @@ class Home extends React.Component {
             <h1 className="title">
             Walkabout
             </h1>
+            <input
+              className="input"
+              type="text"
+              placeholder="Search for a place or point of interest"
+              onChange={this.getInput}
+            />
+            <p>Is this a Place or a Point of Interest at a Place?</p>
+            <div onChange={this.getSearchType}>
+              <input type="radio" value="Place" name="searchType"/> a Place
+              <input type="radio" value="POI" name="searchType"/> a Point of Interest at a place
+            </div>
           </div>
           <Destinations />
         </div>
