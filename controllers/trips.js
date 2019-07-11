@@ -6,6 +6,7 @@ function indexTrips(req, res, next) {
   Trip
     .find()
     .populate('places')
+    .populate('user_id')
     .then(trips => res.status(200).json(trips))
     .catch(next)
 }
