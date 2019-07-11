@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-
-//axios request variables
 const { token, account } = require('../../../config/env')
 const triposoAPI = 'https://www.triposo.com/api/20181213/'
-const endpoint = 'poi'
-const format = '.json'
 
-// TODO figure out what we need from the query ie location id and unique id
-const paramsBlock = 'location_id=London&annotate=trigram:general&trigram=>=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score'
 
 class Destinations extends Component {
   constructor(props) {
@@ -27,16 +21,21 @@ class Destinations extends Component {
   }
 
   getDestinations() {
-    axios.get(`${triposoAPI}${endpoint}${format}?${paramsBlock}&account=${account}&token=${token}`)
-      .then( res => this.setState({ destinations: res.data.results }))
-      .catch(err => console.log(err))
+    if (this.props.searchCriteria.searchType === 'Place') {
+      axios.get(`${triposoAPI}location.json?id=${this.props.searchCriteria.inputValue}&fields=all&account=${account}&token=${token}`)
+        .then( res => this.setState({ destinations: res.data.results }))
+        .catch(err => console.log(err))
+    } else {
+      axios.get(`${triposoAPI}poi.json?location_id=London$annotate=trigram:${this.props.searchCriteria.inputValue}&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score&account=${account}&token=${token}`)
+        .then( res => this.setState({ destinations: res.data.results }))
+        .catch(err => console.log(err))
+    }
   }
 
   handleClick( e ) {
     // e.persist() - what does this do??
     console.log( 'selected: ', e )
     this.setState( { selected: e }, () => this.props.history.push(`/places/${this.state.selected}`))
-    
   }
 
   render() {
@@ -47,15 +46,11 @@ class Destinations extends Component {
         <ul>
           {
             this.state.destinations.map(destination => (
-              // <li onClick={this.handleClick}
-              //   value={`${destination.id}`}
-              //   key={`${destination.id}${destination.location_id}`}>
-              //   {destination.name}{destination.id}
-              // </li>
               <li
                 key={destination.id}
                 onClick={() => this.handleClick(destination.id)}>
                 {destination.name}{destination.id}
+                {this.props.searchCriteria.inputValue}
               </li>
             ))
           }

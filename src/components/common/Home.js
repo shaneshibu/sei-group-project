@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import Destinations from '../places/Destinations.js'
 
-class Home extends React.Component {
+class Home extends Component {
   constructor() {
     super()
 
@@ -9,6 +9,7 @@ class Home extends React.Component {
       inputValue: null,
       searchType: null
     }
+
     this.getInput = this.getInput.bind(this)
     this.getSearchType = this.getSearchType.bind(this)
   }
@@ -16,7 +17,6 @@ class Home extends React.Component {
   getInput(e) {
     console.log( 'changed: ', e.target.value )
     this.setState( { inputValue: e.target.value } )
-    // this.setState({ inputValue: e.target.value })
   }
 
   getSearchType(e) {
@@ -32,19 +32,29 @@ class Home extends React.Component {
             <h1 className="title">
             Walkabout
             </h1>
-            <input
-              className="input"
-              type="text"
-              placeholder="Search for a place or point of interest"
-              onChange={this.getInput}
-            />
-            <p>Is this a Place or a Point of Interest at a Place?</p>
+            <p>Are you looking for a Place or a Point of Interest at a Place?</p>
             <div onChange={this.getSearchType}>
               <input type="radio" value="Place" name="searchType"/> a Place
               <input type="radio" value="POI" name="searchType"/> a Point of Interest at a place
             </div>
+            {this.state.searchType === 'POI' &&
+            <input
+              className="input"
+              type="text"
+              name="POI"
+              placeholder="Point of Interest"
+              onChange={this.getInput}
+            />
+            }
+            <input
+              className="input"
+              type="text"
+              name="Place"
+              placeholder="Place"
+              onChange={this.getInput}
+            />
           </div>
-          <Destinations />
+          <Destinations searchCriteria = {this.state} />
         </div>
       </section>
 
