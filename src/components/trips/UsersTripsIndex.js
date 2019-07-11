@@ -17,7 +17,7 @@ class UsersTripsIndex extends React.Component {
   }
 
   componentDidMount() {
-    //console.log(this.props.match.params.id)
+    console.log(this.props)
     this.getUsersTrips()
   }
   getUsersTrips() {
@@ -83,7 +83,7 @@ class UsersTripsIndex extends React.Component {
                 />
               </div>
               <div className="control">
-                <button className="button">Create</button>
+                {this.isOwner() && <button className="button">Create</button>}
               </div>
             </form>
           </div>

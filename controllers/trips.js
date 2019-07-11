@@ -17,10 +17,7 @@ function indexUserTrips(req, res, next) {
   Trip
     .find({ user_id: req.params.id })
     .populate('places')
-    .then(trips => {
-      if (!trips.length) res.status(204).json({ message: `${req.params.id} doesn't have any trips` })
-      res.status(200).json(trips)
-    })
+    .then(trips => res.status(200).json(trips) )
     .catch(next)
 }
 
