@@ -6,25 +6,11 @@ const bcrypt = require('bcrypt')
 
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  // trips: { [tripSchema] },
-  locationHome: {
-    type: String,
-    required: true
-  }
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  locationHome: { type: String, required: true },
+  image: { type: String }
 })
 
 // Unique option on its own is not a validator. Mongoose unique validator adds pre-save validation for unique fields ^^ in a Mongoose schema

@@ -5,11 +5,11 @@ import axios from 'axios'
 //axios request variables
 const { token, account } = require('../../../config/env')
 const triposoAPI = 'https://www.triposo.com/api/20181213/'
-const location = 'London'
+const endpoint = 'poi'
 const format = '.json'
 
 // TODO figure out what we need from the query ie location id and unique id
-const paramsBlock = '&annotate=trigram:general&trigram=>=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score'
+const paramsBlock = 'location_id=London&annotate=trigram:general&trigram=>=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score'
 
 class Destinations extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Destinations extends Component {
   }
 
   getDestinations() {
-    axios.get(`${triposoAPI}poi${format}?location_id=${location}${paramsBlock}&account=${account}&token=${token}`)
+    axios.get(`${triposoAPI}${endpoint}${format}?${paramsBlock}&account=${account}&token=${token}`)
       .then( res => this.setState({ destinations: res.data.results }))
       .catch(err => console.log(err))
   }
@@ -35,7 +35,8 @@ class Destinations extends Component {
   handleClick( e ) {
     // e.persist() - what does this do??
     console.log( 'selected: ', e )
-    this.setState( { selected: e })
+    this.setState( { selected: e }, () => this.props.history.push(`/places/${this.state.selected}`))
+    
   }
 
   render() {

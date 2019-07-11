@@ -18,7 +18,10 @@ const ratingSchema = new mongoose.Schema({
 
 const placeSchema = new mongoose.Schema({
   triposoId: { type: String, required: true },
-  images: [ { type: String } ],
+  name: { type: String, required: true },
+  thumbnail: { type: String },
+  snippet: { type: String },
+  userImages: [ { type: String } ],
   comments: [ commentSchema ],
   ratings: [ ratingSchema ]
 })

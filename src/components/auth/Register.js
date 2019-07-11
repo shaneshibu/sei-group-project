@@ -22,7 +22,10 @@ class Register extends React.Component {
 
     axios.post('/api/register', this.state.data)
       .then(() => this.props.history.push('/login'))
-      .catch(err => this.setState({ errors: err.reponse.data.errors }))
+      .catch(err => {
+        console.log(err)
+        this.setState({ errors: err.reponse })
+      })
   }
 
   render() {
@@ -76,6 +79,19 @@ class Register extends React.Component {
                   type="password"
                   name="passwordConfirmation"
                   placeholder="Password Confirmation"
+                  onChange={this.handleChange}
+                />
+              </div>
+              {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
+            </div>
+            <div className="field">
+              <label className="label">Location Home</label>
+              <div className="control">
+                <input
+                  className={`input ${this.state.errors.passwordConfirmation ? 'is-danger' : ''}`}
+                  type="location"
+                  name="locationHome"
+                  placeholder="Location Home"
                   onChange={this.handleChange}
                 />
               </div>
