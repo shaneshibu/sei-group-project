@@ -22,6 +22,7 @@ const placeSchema = new mongoose.Schema({
   thumbnail: { type: String },
   snippet: { type: String },
   userImages: [ { type: String } ],
+  locationName: { type: String },
   comments: [ commentSchema ],
   ratings: [ ratingSchema ]
 })
