@@ -32,7 +32,7 @@ class Register extends React.Component {
     return (
       <section className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="register">
             <h2 className="title">Register</h2>
             <div className="field">
               <label className="label">Username</label>
