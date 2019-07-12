@@ -64,7 +64,7 @@ class Home extends Component {
     return (
       <section className="hero is-fullheight-with-navbar">
         <div className="hero-image">
-          <div className="container">
+          <div className="container has-text-centered">
             <h1 className="title">
             Walkabout
             </h1>

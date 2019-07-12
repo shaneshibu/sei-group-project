@@ -67,6 +67,30 @@ background-color: #d2c298;
 
 }
 
+.showPlace{
+background-color: #d2c298;
+}
+
+#showTitle{
+padding: 10px;
+}
+
+.showSnippet{
+padding: 10px;
+font-family: Bookman;
+font-weight: bold;
+}
+
+.showImage{
+padding: 20px;
+border: 1.5px solid grey;
+display: inline-block;
+}
+
+.showButton{
+padding-right: 20px;
+}
+
 .title{
   font-family: "Palatino Header"
 }

@@ -17,6 +17,7 @@ function indexUserTrips(req, res, next) {
   Trip
     .find({ user_id: req.params.id })
     .populate('places')
+    .populate('user_id')
     .then(trips => res.status(200).json(trips))
     .catch(next)
 }

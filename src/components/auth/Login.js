@@ -31,7 +31,7 @@ class Login extends React.Component {
     return (
       <section className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit} className="login">
+          <form onSubmit={this.handleSubmit} className="login"s>
             <h2 className="title">Login</h2>
             <div className="field">
               <label className="label">Email</label>
