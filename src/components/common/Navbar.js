@@ -28,13 +28,13 @@ class Navbar extends React.Component {
         </div>
         <div className="navbar-menu">
           <div className="navbar-end">
-            {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
-            {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
+            {!Auth.isAuthenticated() && <Link className="navbar-item" id="register" to="/register">Register</Link>}
+            {!Auth.isAuthenticated() && <Link className="navbar-item" id="login" to="/login">Login</Link>}
             <Link className="navbar-item" to="/trips">Browse Trips</Link>
             {Auth.isAuthenticated() && <Link className="navbar-item" to={`/users/${Auth.getUser()}/trips`}>My Trips</Link>}
             <Link className="navbar-item" to="/users">People</Link>
             {Auth.isAuthenticated() && <Link className="navbar-item" to={`/users/${Auth.getUser()}`}>My Profile</Link>}
-            {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
+            {Auth.isAuthenticated() && <a className="navbar-item" id="logout" onClick={this.logout}>Logout</a>}
           </div>
         </div>
       </nav>
