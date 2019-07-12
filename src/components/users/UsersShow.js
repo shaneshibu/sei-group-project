@@ -32,6 +32,9 @@ class UsersShow extends React.Component {
           <div className="email">{user.email}</div>
           <div className="username">{user.username}</div>
           <div className="location">{user.locationHome}</div>
+          <div className="trips">
+            {user.username} has {user.trips.length} trip(s)
+          </div>
         </div>
       </div>
     )
@@ -44,7 +47,7 @@ class UsersShow extends React.Component {
       <section className="section page-container">
         <div className="container">
           <h1 className="title">
-          
+
           </h1>
           {userInfo}
         </div>
