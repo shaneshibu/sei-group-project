@@ -22,7 +22,7 @@ class TripsIndex extends React.Component {
       <section className="section">
         <div className="container">
           <h1 className="title">
-              Browse All Trips
+            Browse All Trips
           </h1>
           <div className="columns is-mobile is-multiline">
             {this.state.trips && this.state.trips.map(trip => (
@@ -36,7 +36,7 @@ class TripsIndex extends React.Component {
                       {trip.places && trip.places.map((place, i) => (
                         <div key={i}>
                           <p>{place.name}</p>
-                          <p>{place.snippet}</p>
+                          {/* <p>{place.snippet}</p> */}
                           <div className="card-image">
                             <figure className="image is-4by3">
                               <img src={place.thumbnail} alt="Placeholder image" />
@@ -44,7 +44,7 @@ class TripsIndex extends React.Component {
                           </div>
                         </div>
                       ))}
-                    </div >
+                    </div>
                     <div className="card-header">
                       <h4 className="card-header-title">Traveller{trip.name}</h4>
                     </div>
