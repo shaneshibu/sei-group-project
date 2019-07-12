@@ -20,6 +20,7 @@ class ShowPlace extends Component {
   componentDidMount() {
     this.getPlace()
     console.log(this.props.match.params.placeId)
+    console.log('boohoo')
   }
 
   //TODO: figure out how to reuse the destiantions request across multiple pages
@@ -31,14 +32,19 @@ class ShowPlace extends Component {
 
   render() {
     if (!this.state.place) return null
-    console.log(this.state)
+    console.log('this state', this.state)
     const { place } = this.state
     return (
       <section>
         <div>
           <p>{place.name}</p>
           <p>{place.snippet}</p>
+          <img
+            src={place.images[0].sizes.medium.url}
+            alt={place.name}
+          />
         </div>
+        <a className="button is-link">Add {place.name} to my Profile</a>
       </section>
     )
   }
