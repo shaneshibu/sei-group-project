@@ -5,9 +5,113 @@
   background-image: url('http://wheelchairtraveling.com/wp-content/gallery/italy-tour-c-o/Tuscany-Siena-1.jpg');
   background-size: cover;
   background-repeat: repeat;
-  height: 800px
+  height: 800px;
 }
 
 h1 {
   color: white;
+}
+
+.outer-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+
+}
+
+.user-container {
+border: 2.5px solid grey;
+text-align: center;
+padding: 20px 80px;
+background-color: #f9f9f9;
+border-radius: 20px;
+width: 50%;
+box-shadow: 4px 4px 4px grey;
+
+}
+
+.user-image {
+border-radius: 50%;
+border: 2px solid grey;
+padding: 5px;
+
+}
+
+.name {
+font-size: 30px;
+color: red ;
+font-family: "Palatino Header";
+font-weight: bold;
+}
+
+.email {
+font-family: "Palatino Header";
+}
+
+.username {
+font-family: "Palatino Header";
+}
+
+.locationHome{
+font-family: "Palatino Header";
+}
+
+.page-container{
+background-color: #d2c298;
+min-height: 100vh;
+}
+
+.section{
+background-color: #d2c298;
+
+}
+
+.title{
+  font-family: "Palatino Header"
+}
+
+.navbar-item{
+  display: inline-block;
+    min-width: 5rem;
+    border-width: 1px;
+    border-color: #d2c298;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    // -webkit-border-radius: .125rem;
+    border-radius: .125rem;
+    padding: .7rem;
+    // -webkit-transition: all .25s ease;
+    // -o-transition: all .25s ease;
+    transition: all .25s ease;
+
+}
+
+.main-title{
+  font-family: "Comic Sans MS Header"
+
+}
+
+.input{
+  width: 30%;
+  justify-content: center;
+}
+
+.column{
+  box-shadow: 2.5px 2.5px 2.5px grey;
+  border-radius: 5px;
+}
+
+#logout{
+color: red;
+}
+
+#login{
+  color: #00FF00;
+}
+
+#register{
+  color: #FFBF00;
 }

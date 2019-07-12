@@ -73,8 +73,8 @@ class Home extends Component {
             </h2>
             <p>Would you like to find a Place, or a particular Point of Interest at a Place?</p>
             <div onChange={this.getSearchType}>
-              <input type="radio" value="Place" name="searchType"/> a Place
-              <input type="radio" value="POI" name="searchType"/> a Point of Interest at a place
+              <input type="radio" value="Place" name="searchType"/>Place
+              <input type="radio" value="POI" name="searchType"/>Point of Interest at a place
             </div>
             <Fragment>
               <div>

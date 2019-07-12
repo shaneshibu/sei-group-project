@@ -2,20 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import 'bulma'
-import './style.scss'
 
+// import Destinations from './components/Destinations'
 import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import ShowPlace from './components/places/ShowPlace'
-import ShowPOI from './components/places/ShowPOI'
 import UsersIndex from './components/users/UsersIndex'
 import UsersShow from './components/users/UsersShow'
 import UsersTripsIndex from './components/trips/UsersTripsIndex'
 import TripsIndex from './components/trips/TripsIndex'
 // import TripsCreate from './components/trips/TripsCreate'
 import TripsShow from './components/trips/TripsShow'
+import SecureRoute from './components/common/SecureRoute'
+import './style.scss'
 
 const App = () => (
   <BrowserRouter>

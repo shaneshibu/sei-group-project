@@ -1,5 +1,6 @@
 require('dotenv').config()
 const User = require('../models/user')
+const Trip = require('../models/trip')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/env')
 
@@ -44,18 +45,17 @@ function showRoute(req, res, next) {
     .then(user => {
       console.log(user)
       if (!user) throw new Error('Not Found')
-      return res.status(200).json(user)
+      Trip
+        .find({ user_id: user._id })
+        .then(trips => {
+          //Object.assign(user, trips)
+          user = { ...user._doc, trips }
+          console.log(user)
+          return res.status(200).json(user)
+        })
     })
     .catch(next)
 }
-
-// function createRoute(req, res, next) {
-//   req.body.user = req.currentUser
-//   User
-//     .create(req.body)
-//     .then(user => res.status(201).json(user))
-//     .catch(next)
-// }
 
 function editRoute(req, res , next) {
   User

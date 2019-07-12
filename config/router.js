@@ -31,7 +31,6 @@ router.route('/trips/:tripId')
   .get(trips.show)
   .put(trips.edit)
   .delete(trips.delete)
-  .post(trips.addPlace)
   .patch(trips.removePlace)
 
 router.route('/trips')
@@ -42,6 +41,7 @@ router.route('/places')
 
 router.route('/places/:placeId')
   .get(places.show)
+  .post(trips.addPlace)
 
 router.route('/*')
   .all((req, res) => res.status(404)
