@@ -51,7 +51,7 @@ class Destinations extends Component {
   handleClick( e ) {
     // e.persist() - what does this do??
     console.log( 'selected: ', e )
-    this.setState( { selected: e }, () => this.props.history.push(`/places/${this.state.selected}`))
+    this.setState( { selected: e }, () => this.props.history.push(`/${this.props.searchType.toLowerCase()}/${this.state.selected}`))
   }
 
   render() {

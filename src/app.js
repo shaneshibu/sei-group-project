@@ -24,8 +24,8 @@ const App = () => (
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <Route path="/places/:placeId" component={ShowPlace} />
-        <Route path="/places/:placeId" component={ShowPOI} />
+        <Route path="/place/:placeId" component={ShowPlace} />
+        <Route path="/poi/:placeId" component={ShowPOI} />
         <Route exact path="/users/:id/trips" component={UsersTripsIndex} />
         <Route exact path='/users/:id' component={UsersShow} />
         <Route exact path="/users" component={UsersIndex} />

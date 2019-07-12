@@ -7,7 +7,6 @@ const triposoAPI = 'https://www.triposo.com/api/20181213/'
 const endpoint = 'location'
 const format = '.json'
 
-//https://www.triposo.com/api/20181213/location.json?id=London&account=ZU9GVO0H&token=gecvyh2juuwkrp5uif4yicwczfaq4ytd
 
 // const paramsBlock = 'id=London'
 
