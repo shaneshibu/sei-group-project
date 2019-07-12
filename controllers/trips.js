@@ -39,6 +39,7 @@ function showTrip(req, res, next) {
   Trip
     .findById(req.params.tripId)
     .populate('places')
+    //.populate('comments.user')
     .then(trip => {
       if (!trip) throw new Error('Not Found')
       res.status(200).json(trip)
