@@ -36,15 +36,22 @@ class ShowPlace extends Component {
     const { place } = this.state
     return (
       <section>
-        <div>
-          <p>{place.name}</p>
-          <p>{place.snippet}</p>
-          <img
+        <div className="showPlace">
+          <div className="title" id="showTitle">
+            <p>{place.name}</p>
+          </div>
+          <div className="showSnippet">
+            <p>{place.snippet}</p>
+          </div>
+          <div className="showImage"><img
             src={place.images[0].sizes.medium.url}
             alt={place.name}
-          />
+          /></div>
+          <div>
+            <a className="button is-warning">Add {place.name} to my Profile</a>
+          </div>
         </div>
-        <a className="button is-link">Add {place.name} to my Profile</a>
+
       </section>
     )
   }
