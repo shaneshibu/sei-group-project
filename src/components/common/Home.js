@@ -54,10 +54,10 @@ class Home extends Component {
             <h1 className="title">
             Walkabout
             </h1>
-            <p>Are you looking for a Place or a Point of Interest at a Place?</p>
+            <p>Shall we find a Place or a Point of Interest at a Place?</p>
             <div onChange={this.getSearchType}>
-              <input type="radio" value="Place" name="searchType"/> a Place
-              <input type="radio" value="POI" name="searchType"/> a Point of Interest at a place
+              <input type="radio" value="Place" name="searchType"/>Place
+              <input type="radio" value="POI" name="searchType"/>Point of Interest at a place
             </div>
             {this.state.searchType === 'POI' &&
             <input
