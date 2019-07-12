@@ -15,6 +15,8 @@ import TripsIndex from './components/trips/TripsIndex'
 // import TripsCreate from './components/trips/TripsCreate'
 import TripsShow from './components/trips/TripsShow'
 import SecureRoute from './components/common/SecureRoute'
+import ShowPlace from './components/places/ShowPlace'
+import ShowPOI from './components/places/ShowPOI'
 import './style.scss'
 
 const App = () => (
