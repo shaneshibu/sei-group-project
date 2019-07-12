@@ -16,7 +16,7 @@ class TripsShow extends React.Component {
   }
 
   render() {
-    if (this.state.trip) console.log(this.state.trip.places)
+    console.log(this.state)
     return (
       <section className="section">
         <div className="container">

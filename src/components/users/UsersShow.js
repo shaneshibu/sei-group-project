@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Auth from '../../lib/Auth'
 
 class UsersShow extends React.Component {
   constructor() {
@@ -7,6 +9,7 @@ class UsersShow extends React.Component {
 
     this.state = { user: false }
     this.getUserData = this.getUserData.bind(this)
+    this.isOwner = this.isOwner.bind(this)
   }
 
   componentDidMount() {
@@ -17,6 +20,10 @@ class UsersShow extends React.Component {
     axios.get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err))
+  }
+
+  isOwner() {
+    return Auth.getUser() === this.props.match.params.id
   }
 
   getUserInfo(){
@@ -35,6 +42,8 @@ class UsersShow extends React.Component {
           <div className="trips">
             {user.username} has {user.trips.length} trip(s)
           </div>
+          {!this.isOwner() && <Link className="button" to={`/users/${this.props.match.params.id}/trips`}>View {this.state.user.name}'s Trips</Link>}
+
         </div>
       </div>
     )

@@ -9,6 +9,7 @@ class UsersTripsIndex extends React.Component {
 
     this.state = {}
     this.getUsersTrips = this.getUsersTrips.bind(this)
+    this.getUser = this.getUser.bind(this)
     //this.handleClick = this.handleClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -19,10 +20,15 @@ class UsersTripsIndex extends React.Component {
   componentDidMount() {
     console.log(this.props)
     this.getUsersTrips()
+    this.getUser()
   }
   getUsersTrips() {
     axios.get(`/api/users/${this.props.match.params.id}/trips`)
       .then(res => this.setState({ trips: res.data }))
+  }
+  getUser() {
+    axios.get(`/api/users/${this.props.match.params.id}`)
+    .then(res => this.setState({ user: res.data }))
   }
 
   // handleClick({ target }) {
@@ -36,7 +42,7 @@ class UsersTripsIndex extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    console.log(this.props)
+    //console.log(this.props)
     if (this.state.newTripInput && this.state.newTripInput.length) {
       axios.post(`/api/users/${this.props.match.params.id}/trips`, {
         title: this.state.newTripInput,
@@ -68,11 +74,12 @@ class UsersTripsIndex extends React.Component {
     return (
       <section className="section">
         <div className="container">
-          <h1 className="title">
-            My Trips
-          </h1>
+          {this.state.user &&
+            <h1 className="title">
+              {this.state.user.username}'s Trips
+          </h1>}
           <div>
-            <form className="field has-addons" onSubmit={this.handleSubmit}>
+            {this.isOwner() && <form className="field has-addons" onSubmit={this.handleSubmit}>
               <div className="control">
                 <input
                   type="text"
@@ -83,9 +90,9 @@ class UsersTripsIndex extends React.Component {
                 />
               </div>
               <div className="control">
-                {this.isOwner() && <button className="button">Create</button>}
+                <button className="button">Create</button>
               </div>
-            </form>
+            </form>}
           </div>
           {this.state.trips && this.state.trips.map(trip => (
             <div key={trip._id} data-tripid={trip._id}>
