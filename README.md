@@ -1,7 +1,78 @@
-# sei-group-project  
-Shane  
-Cliff  
-Dan  
+# General Assembly SEI Project 3: Walkabout
+
+
+## Introduction
+A travel site modeled after tripadvisor.com. Using a MERN stack and an external API, users can search for places of interest in places all over the world and save them to their own trips they can create.
+
+## Team Members
+Shane - https://github.com/shaneshibu/  
+Cliff - https://github.com/Cliff-Conolly/  
+Dan - https://github.com/danielagutperl/
+
+## Timeframe
+1 week (June 2019)
+
+## Technologies Used
+- MongoDB
+- Express
+- React
+- Node.js
+- Triposo API
+
+## Overview
+![Walkabout Home Page](src/assets/screenshots/homepage.png)
+
+From the home screen users can search for cities or places of interest around the world then go to that places webpage to see more about them.
+
+Users can save these places to their own trips or can even see other users planned trips.
+
+![Walkabout User Trips](src/assets/screenshots/browseTrips.gif)
+
+Users can even browse other members and see what trips they have planned.
+
+![Walkabout Users](src/assets/screenshots/browseUsers.gif)
+
+## Wins
+The database controllers proved to be challenging in that we needed to interact with an external API as well as data on our database.
+
+```javascript
+function showPlace(req, res, next) {
+  console.log('show place')
+  Place
+    .findOne({ triposoId: req.params.placeId })
+    .then(place => {
+      if (!place) throw new Error('Not Found')
+
+      getTriposoPOIData(place.triposoId)
+        .then(placeData => {
+          place = { ...place._doc, ...placeData.data.results[0] }
+          return res.status(200).json(place)
+        })
+    })
+    .catch(next)
+}
+
+function getTriposoPOIData(triposoId) {
+  return axios
+    .get('https://www.triposo.com/api/20181213/poi.json?', {
+      params: {
+        'id': triposoId,
+        'fields': 'name,attribution,coordinates,snippet,images,location_id',
+        'account': account,
+        'token': token
+      }
+    })
+}
+```
+By spreading the data object return from the API request with data from our database we were able to return a single JSON object with all the data to the front end.
+
+## Challenges
+![Walkabout Search Places](src/assets/screenshots/search.gif)
+Due to the nature of the PI we were using, searching for cities and searching for places of interest were two different http get requests. This made searching from a user's perspective cumbersome. We eventually settled for adding a radio button on the main search bar, so users would have to choose which they wanted to search fro.
+
+## Future Features
+- Additional Styling. While the site is mostly functional, we didn't have enough time to style the front end so we could spend some additional time to make it look nicer.
+- Currently users have to use a radio button on the front page to choose between searching cities and places of interest. Ideally we could make it so the search bar searches both without the need for a radio button.
 
 ## **API Documentation**  
 
