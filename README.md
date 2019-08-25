@@ -76,6 +76,10 @@ Due to the nature of the PI we were using, searching for cities and searching fo
 
 ## **API Documentation**  
 
+### Overview  
+
+This project, being worked on by three people with a deadline of 1 week necessitated that the front and back end were developed concurrently. The following documentation was written and updated during the project so the members working on the front end would be kept up to date when changes were made to the back end.
+
 ###  **/api/register**  
 #### POST - Register
 ##### Example Request  
@@ -89,7 +93,7 @@ POST http://localhost:3999/api/register
 **locationHome** - Type: String - Required  
 
 ##### Example Payload  
-```  
+```javascript  
 {
   "username": "Daniela"
   "email": "daniela@email.com"
@@ -99,7 +103,7 @@ POST http://localhost:3999/api/register
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 201 Created  
 {
   "message": "Welcome aboard Daniela...now your journey begins."
@@ -115,14 +119,14 @@ POST http://localhost:3999/api/login
 **password** - Type: String - Required  
 
 ##### Example Payload  
-```  
+```javascript  
 {
   "email": "daniela@email.com",
   "password": "pass"
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 200 OK
 {
   "message": "Hey Daniela, welcome back.",
@@ -135,7 +139,7 @@ POST http://localhost:3999/api/login
 GET http://localhost:3999/api/users/
 
 ##### Example Response  
-```  
+```javascript  
 200 OK
 [
   {
@@ -175,7 +179,7 @@ GET http://localhost:3999/api/users/
 GET http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 
 ##### Example Response  
-```  
+```javascript  
 {
     "_id": "5d247d6b4202603cf1d86f2d",
     "username": "Daniela",
@@ -196,13 +200,13 @@ PUT http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 **locationHome** - Type: String - Optional  
 
 ##### Example Payload  
-```  
+```javascript  
 {
   "email": "daniela.2@email.com"
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 202 Accepted  
 {
     "_id": "5d247d6b4202603cf1d86f2d",
@@ -217,7 +221,7 @@ PUT http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 DELETE http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 
 ##### Example Response  
-```  
+```javascript  
 204 No Content
 ```
 
@@ -227,7 +231,7 @@ DELETE http://localhost:3999/api/users/5d247d6b4202603cf1d86f2d
 GET http://localhost:3999/api/trips/
 
 ##### Example Response  
-```  
+```javascript  
 200 OK
 [
   {
@@ -272,7 +276,7 @@ GET http://localhost:3999/api/trips/
 GET http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
 
 ##### Example Response  
-```  
+```javascript  
 200 OK
 [
   {
@@ -297,14 +301,14 @@ POST http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
 **password** - Type: String - Required  
 
 ##### Example Payload  
-```  
+```javascript  
 {
   "title": "Amsterdam trip 2019",
   "user_id": "5d247d6b4202603cf1d86f2d"
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 201 Created
 {
   "places": [],
@@ -321,7 +325,7 @@ POST http://localhost:3999/api/users/5d24c42c4ec4f8557d0eb416/trips
 GET http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 
 ##### Example Response  
-```  
+```javascript  
 200 OK
 {
   "places": [
@@ -343,13 +347,13 @@ PUT http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 **title** - Type: String - Required  
 
 ##### Example Payload  
-```  
+```javascript  
 {
 	"title": "Brussels trip 2019"
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 202 Accepted  
 {
   "places": [
@@ -371,13 +375,13 @@ POST http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 **triposoId** - Type: String - Required  
 
 ##### Example Payload  
-```  
+```javascript  
 {
   "triposoId": "W__3517898"
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 202 Accepted
 {
   "places": [
@@ -399,13 +403,13 @@ PATCH http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 **placeId** - Type: String - Required  
 
 ##### Example Payload  
-```  
+```javascript  
 {
 	"placeId": "5d24c42d4ec4f8557d0eb41d"
 }
 ```  
 ##### Example Response  
-```  
+```javascript  
 202 Accepted  
 {
   "places": [
@@ -423,7 +427,7 @@ PATCH http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 DELETE http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 
 ##### Example Response  
-```  
+```javascript  
 204 No Content
 ```
 ### **/api/places**  
@@ -433,7 +437,7 @@ DELETE http://localhost:3999/api/trips/5d24c42d4ec4f8557d0eb449
 GET http://localhost:3999/api/places/
 
 ##### Example Response  
-```  
+```javascript  
 200 OK
 [
   {
@@ -504,7 +508,7 @@ GET http://localhost:3999/api/places/
 GET http://localhost:3999/api/places/W__3517898
 
 ##### Example Response  
-```  
+```javascript  
 {
   "images": [],
   "_id": "5d24c42d4ec4f8557d0eb419",
@@ -542,7 +546,7 @@ GET http://localhost:3999/api/places/W__3517898
 GET http://localhost:3999/api/places/W__3517898
 
 ##### Example Response  
-```  
+```javascript  
 200 OK
 {
   "images": [],
