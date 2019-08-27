@@ -2,7 +2,7 @@
 
 
 ## Introduction
-A travel site modeled after tripadvisor.com. Using a MERN stack and an external API, users can search for places of interest in places all over the world and save them to their own trips they can create.
+A travel site modelled after tripadvisor.com. Using a MERN stack and an external API, users can search for places of interest in places all over the world and save them to their own trips they can create.
 
 ## Team Members
 Shane - https://github.com/shaneshibu/  
@@ -20,9 +20,12 @@ Dan - https://github.com/danielagutperl/
 - Triposo API
 
 ## Overview
+
 ![Walkabout Home Page](src/assets/screenshots/homepage.png)
 
-From the home screen users can search for cities or places of interest around the world then go to that places webpage to see more about them.
+From the home screen users can search for cities or places of interest around the world then go to that places webpage to see more about them. When users type in the search bar on the homepage, a GET request is made to the Triposo API using the contents of the search bar as a query parameter. The response to the search was displayed as a list beneath the search bar. 
+
+![Walkabout Search Places](src/assets/screenshots/search.gif)
 
 Users can save these places to their own trips or can even see other users planned trips.
 
@@ -64,11 +67,37 @@ function getTriposoPOIData(triposoId) {
     })
 }
 ```
-By spreading the data object return from the API request with data from our database we were able to return a single JSON object with all the data to the front end.
+By spreading the data object return from the API request with data from our own database we were able to return a single JSON object with all the data to the front end. By having all requests to the Triposo API made from the back end, the front end would only have to make a single request to the back end
+By having the front end make a single request to the back end
 
 ## Challenges
-![Walkabout Search Places](src/assets/screenshots/search.gif)
-Due to the nature of the PI we were using, searching for cities and searching for places of interest were two different http get requests. This made searching from a user's perspective cumbersome. We eventually settled for adding a radio button on the main search bar, so users would have to choose which they wanted to search fro.
+
+Due to the nature of the API we were using, searching for cities and searching for places of interest were two different http GET requests. This made searching from a user experience perspective cumbersome. We eventually settled for adding a radio button on the main search bar, so users would have to choose which they wanted to search from.
+
+```javascript
+getDestinations() {
+
+  const { searchType, inputValue } = this.state
+
+  if (searchType === 'Place' && inputValue.Place) {
+
+    // Capitalise first letter of location to use in API search query
+    const place = inputValue.Place.charAt(0).toUpperCase() + inputValue.Place.slice(1)
+
+    //make search query for a 'Place'
+    axios.get(`${triposoAPI}location.json?annotate=trigram:${place}&trigram=>=0.3&count=10&fields=id,name,score,snippet&order_by=-score&account=${account}&token=${token}`)
+      .then( res => this.setState({ destinations: res.data.results }))
+      .catch(err => console.log(err))
+
+  } else if (searchType === 'POI' && inputValue.POI) {
+
+    //make search query for a 'Point of Interest'
+    axios.get(`${triposoAPI}poi.json?annotate=trigram:${inputValue.POI}&trigram=%3E=0.3&count=10&fields=id,name,score,snippet,location_id,tag_labels&order_by=-score&account=${account}&token=${token}`)
+      .then( res => this.setState({ destinations: res.data.results }))
+      .catch(err => console.log(err))
+  }
+}
+```
 
 ## Future Features
 - Additional Styling. While the site is mostly functional, we didn't have enough time to style the front end so we could spend some additional time to make it look nicer.
